@@ -52,7 +52,7 @@ jobs:
       run: ls -la /home/runner/work/UpInfo78/UpInfo78/UpInfo78
 
     - name: Pack project
-      run: dotnet pack /home/runner/work/UpInfo78/UpInfo78/UpInfo78/UpInfo78.csproj --output ./artifacts --include-symbols --no-build
+      run: dotnet pack ./UpInfo78/UpInfo78.csproj --output ./artifacts --include-symbols --no-build
 
     - name: Publish to NuGet
       run: dotnet nuget push ./artifacts/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
