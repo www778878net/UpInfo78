@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths-ignore:
-      - '**/UpInfo78/UpInfo78.csproj'  # 忽略 csproj 文件的更改
+      - '**/UpInfo78/UpInfo78.csproj'  # 忽略 csproj 文件的更改    
   pull_request:
     branches:
       - main
@@ -22,7 +22,20 @@ jobs:
       with:
         fetch-depth: 0 
 
+    - name: Check commit message
+      id: check-commit-message
+      run: |
+        COMMIT_MESSAGE=$(git log --format=%B -n 1 ${{ github.sha }})
+        echo "Commit message: $COMMIT_MESSAGE"
+        if [[ $COMMIT_MESSAGE == *Merge* ]]; then
+          echo "merge_commit=true" >> $GITHUB_OUTPUT
+        else
+          echo "merge_commit=false" >> $GITHUB_OUTPUT
+        fi
+
+
     - name: Setup .NET Core
+      if: steps.check-commit-message.outputs.merge_commit == 'false'
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.x'
