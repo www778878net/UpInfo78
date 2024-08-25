@@ -28,12 +28,12 @@ jobs:
       run: sudo apt-get update && sudo apt-get install -y xmlstarlet
 
     - name: Build and test
-      run: |
-        cd  /home/runner/work/UpInfo78/UpInfo78/
-        pwd
+      run: |        
         # Build the solution with the Release configuration
         dotnet build --configuration Release
         # Create Test Results Directory
+        cd  /home/runner/work/UpInfo78/UpInfo78/
+        pwd
         mkdir -p ./test/TestResults
         # Run NUnit tests
         dotnet test ./test/Test.csproj --no-build --logger "trx;LogFileName=testresults.trx" --results-directory ./test/TestResults
