@@ -28,11 +28,14 @@ jobs:
     - name: Build solution
       run: dotnet build --no-restore
 
+    - name: Print current directory
+      run: pwd
+
     - name: Run NUnit tests
-      run: dotnet test ./Upinfo78Tests/Upinfo78Test.csproj --no-build --verbosity normal
+      run: dotnet test ./test/Test.csproj --no-build --verbosity normal
 
     - name: Publish test results
       uses: EnricoMi/publish-unit-test-result-action@v1
       if: always()
       with:
-        files: './Upinfo78Tests/TestResults/**/*.xml'
+        files: './test/TestResults/**/*.xml'
