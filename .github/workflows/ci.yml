@@ -42,4 +42,4 @@ jobs:
       if: always()
       with:
         files: './test/TestResults/*.trx'
-        GITHUB_TOKEN: ${{ env.TEST_RESULTS_PAT  }}  # 更新这里
+        GITHUB_TOKEN: ${{ env.TEST_RESULTS_PAT }}  # 更新这里
