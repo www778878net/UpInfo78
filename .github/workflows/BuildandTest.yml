@@ -107,17 +107,3 @@ jobs:
         commit_message: 'Update version number'
         file_pattern: './UpInfo78/UpInfo78.csproj' 
         tagging_message: 'Release_v${{ steps.update-version.outputs.new_version }}'  # **修改**: 在提交时创建标签
-
-    - name: Set Git User Information
-      run: |
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-
-    - name: Create Tag
-      run: |
-        # Use the new version number
-        NEW_VERSION=${{ steps.update-version.outputs.new_version }}
-        
-        # Create a tag with the new version number
-        git tag -a "v$NEW_VERSION" -m "Release v$NEW_VERSION"
-        git push origin "v$NEW_VERSION"
