@@ -22,7 +22,7 @@ jobs:
       with:
         fetch-depth: 0 
 
-    - name: Check commit message
+    - name: Check commit message2
       id: check-commit-message
       run: |
         COMMIT_MESSAGE=$(git log --format=%B -n 1 ${{ github.sha }})
