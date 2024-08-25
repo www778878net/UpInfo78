@@ -49,7 +49,7 @@ jobs:
     - name: List files in the next directory
       run: ls -la ./UpInfo78
     - name: List files in the next2 directory
-      run: ls -la ./home/runner/work/UpInfo78/UpInfo78
+      run: ls -la /home/runner/work/UpInfo78/UpInfo78
 
     - name: Pack project
       run: dotnet pack ./UpInfo78.csproj --output ./artifacts --include-symbols --no-build
