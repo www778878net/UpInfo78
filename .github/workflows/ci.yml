@@ -28,11 +28,14 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
 
-    #- name: Build solution
-      #run: dotnet build --no-restore
+    - name: Build solution
+      run: dotnet build --no-restore
+
 
     - name: Update version number
       run: |
+        pwd
+        ls -la
         # Get the current version number from the csproj file
         CURRENT_VERSION=$(xmlstarlet sel -t -v "//Project/PropertyGroup/PackageVersion" ./UpInfo78/UpInfo78.csproj)
         
