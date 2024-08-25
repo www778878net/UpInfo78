@@ -13,6 +13,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -28,14 +31,14 @@ jobs:
     - name: Build solution
       run: dotnet build --no-restore
 
-    - name: Print current directory
-      run: pwd
+    - name: Create Test Results Directory
+      run: mkdir -p ./test/TestResults
 
     - name: Run NUnit tests
-      run: dotnet test ./test/Test.csproj --no-build --verbosity normal
+      run: dotnet test ./test/Test.csproj --no-build --logger "trx;LogFileName=testresults.trx" --results-directory ./test/TestResults
 
     - name: Publish test results
       uses: EnricoMi/publish-unit-test-result-action@v1
       if: always()
       with:
-        files: './test/TestResults/**/*.xml'
+        files: './test/TestResults/**/*.trx'
