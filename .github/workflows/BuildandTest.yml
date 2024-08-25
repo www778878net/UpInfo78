@@ -1,4 +1,4 @@
-name: .NET Core NUnit Tests CI
+name: Build and Test
 
 on:
   push:
@@ -88,6 +88,11 @@ jobs:
       with:
         commit_message: 'Update version number'
         file_pattern: './UpInfo78/UpInfo78.csproj' 
+
+    - name: Set Git User Information
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
 
     - name: Create Tag
       run: |
