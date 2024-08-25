@@ -49,13 +49,10 @@ jobs:
     - name: Build solution
       run: dotnet build --no-restore
 
-      #pwd
-      #ls -la
     - name: Update version number
       id: update-version
       run: |
         
-        #ls -la
         # Get the current version number from the csproj file
         CURRENT_VERSION=$(xmlstarlet sel -t -v "//Project/PropertyGroup/PackageVersion" ./UpInfo78/UpInfo78.csproj)
         
@@ -109,7 +106,7 @@ jobs:
       with:
         commit_message: 'Update version number'
         file_pattern: './UpInfo78/UpInfo78.csproj' 
-        tagging_message: 'Release v${{ steps.update-version.outputs.new_version }}'  # **新增**: 在提交时创建标签
+        tagging_message: 'Release_v${{ steps.update-version.outputs.new_version }}'  # **修改**: 在提交时创建标签
 
     - name: Set Git User Information
       run: |
