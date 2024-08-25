@@ -82,3 +82,9 @@ jobs:
 
     - name: List files in artifacts directory
       run: ls -la ./artifacts
+
+    - name: Commit and push changes
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: 'Update version number'
+        file_pattern: './UpInfo78/UpInfo78.csproj' 
