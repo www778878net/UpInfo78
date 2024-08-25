@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      GITHUB_TOKEN: ${{ secrets.TEST_RESULTS_PAT }}
+      GITHUB_TOKEN: ${{ secrets.INPUT_GITHUB_TOKEN  }}
 
     steps:
     - name: Checkout code
@@ -42,3 +42,4 @@ jobs:
       if: always()
       with:
         files: './test/TestResults/*.trx'
+        GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}  # 更新这里
