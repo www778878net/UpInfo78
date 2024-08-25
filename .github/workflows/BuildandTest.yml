@@ -104,6 +104,6 @@ jobs:
     - name: Commit and push changes
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        commit_message: 'Update version number'
+        commit_message: 'v${{ steps.update-version.outputs.new_version }}'
         file_pattern: './UpInfo78/UpInfo78.csproj' 
-        tagging_message: 'Release_v${{ steps.update-version.outputs.new_version }}'  # **修改**: 在提交时创建标签
+        tagging_message: 'v${{ steps.update-version.outputs.new_version }}'  # **修改**: 在提交时创建标签
