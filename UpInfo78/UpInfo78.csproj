@@ -4,11 +4,22 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <Nullable>enable</Nullable>
     <AssemblyName>www778878net.net</AssemblyName>
-    <Version>0.0.1</Version>
-    <Authors>www778878net</Authors>
-    <PackageId>www778878net.Upinfo78</PackageId>
-    <Description> making it easier to use</Description>
-    <PackageTags>UpInfo78, 7788</PackageTags>
+    
+    <Deterministic>false</Deterministic>
+    <Version>0.0.1.0001</Version>
+    <PackageId>UpInfo78</PackageId>
+    <Authors>Frieda.657225485@qq.com</Authors>
+    <Company>www778878net</Company>
+    <Product>UpInfo78</Product>
+    <Copyright>7788soft</Copyright>
+    <PackageProjectUrl>http://www.778878.net</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/www778878net/UpInfo78.git</RepositoryUrl>
+    <PackageTags>"UpInfo78";"www778878net";</PackageTags>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <RootNamespace>www778878net</RootNamespace>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
