@@ -1,0 +1,40 @@
+name: .NET Core CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-parser@v2
+      if: always()
+      with:
+        files: "**/TestResults.xml"
+    - name: Generate Badge
+      if: success()
+      run: |
+        # Generate the badge image using a tool like `shields.io`
+        curl -s https://img.shields.io/static/v1?label=tests&message=passing&color=green > docs/test-badge.svg
+    - name: Deploy to GitHub Pages
+      if: success()
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        publish_dir: ./docs
