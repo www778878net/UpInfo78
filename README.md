@@ -13,7 +13,7 @@ English| [简体中文](./README.cn.md)
 ## Introduction
 
 1. Provides a simple wrapper for API request calls.
-2. No configuration required, ready to use .
+2. No configuration required, ready to use.
 
 ## Applicable Platforms
 
