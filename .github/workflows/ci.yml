@@ -45,7 +45,7 @@ jobs:
       run: pwd
 
     - name: Pack project
-      run: dotnet pack ./Upinfo78/Upinfo78.csproj --output ./artifacts --include-symbols --no-build
+      run: dotnet pack ./Upinfo78.csproj --output ./artifacts --include-symbols --no-build
 
     - name: Publish to NuGet
       run: dotnet nuget push ./artifacts/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
