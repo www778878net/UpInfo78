@@ -14,16 +14,21 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      GITHUB_TOKEN: ${{ secrets.MYKEY78  }}
+      GITHUB_TOKEN: ${{ secrets.MYKEY78 }}
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Print MYKEY78 value
+      run: |
+        echo "MYKEY78 Value: $GITHUB_TOKEN"
+      # 这里使用 $GITHUB_TOKEN 来引用环境变量
+
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.0.x' # Updated to match the latest version installed
+        dotnet-version: '8.0.x'
 
     - name: Restore dependencies
       run: dotnet restore
@@ -42,4 +47,4 @@ jobs:
       if: always()
       with:
         files: './test/TestResults/*.trx'
-        GITHUB_TOKEN: ${{ env.MYKEY78 }}  # 更新这里
+        GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
