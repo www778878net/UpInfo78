@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <Nullable>enable</Nullable>
-    <AssemblyName>www778878net.net</AssemblyName>
+    <AssemblyName>UpInfo78</AssemblyName>
     
     <Deterministic>false</Deterministic>
     <Version>0.0.1.0001</Version>
