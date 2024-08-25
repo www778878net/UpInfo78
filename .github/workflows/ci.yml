@@ -28,22 +28,9 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
 
-    - name: Build solution
-      run: dotnet build --no-restore
+    #- name: Build solution
+      #run: dotnet build --no-restore
 
-    - name: Create Test Results Directory
-      run: mkdir -p ./test/TestResults
-
-    - name: Run NUnit tests
-      run: dotnet test ./test/Test.csproj --no-build --logger "trx;LogFileName=testresults.trx" --results-directory ./test/TestResults
-
-    - name: Publish test results
-      uses: EnricoMi/publish-unit-test-result-action@v2
-      if: always()
-      with:
-        files: './test/TestResults/*.trx'
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
     - name: Update version number
       run: |
         # Get the current version number from the csproj file
@@ -66,6 +53,21 @@ jobs:
 
     - name: Build UpInfo78 project
       run: dotnet build ./UpInfo78/UpInfo78.csproj --configuration Release
+
+    - name: Create Test Results Directory
+      run: mkdir -p ./test/TestResults
+
+    - name: Run NUnit tests
+      run: dotnet test ./test/Test.csproj --no-build --logger "trx;LogFileName=testresults.trx" --results-directory ./test/TestResults
+
+    - name: Publish test results
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      if: always()
+      with:
+        files: './test/TestResults/*.trx'
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
 
     - name: Pack project
       run: dotnet pack ./UpInfo78/UpInfo78.csproj --output ./artifacts --include-symbols --no-build
