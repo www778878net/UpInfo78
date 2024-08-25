@@ -29,24 +29,26 @@ jobs:
 
     - name: Build and test
       run: |
+        cd  /home/runner/work/UpInfo78/UpInfo78/
+        pwd
         # Build the solution with the Release configuration
         dotnet build --configuration Release
         # Create Test Results Directory
-        mkdir -p ./UpInfo78/UpInfo78/test/TestResults
+        mkdir -p ./test/TestResults
         # Run NUnit tests
-        dotnet test ./UpInfo78/UpInfo78/test/Test.csproj --no-build --logger "trx;LogFileName=testresults.trx" --results-directory ./UpInfo78/UpInfo78/test/TestResults
+        dotnet test ./test/Test.csproj --no-build --logger "trx;LogFileName=testresults.trx" --results-directory ./test/TestResults
 
     - name: Publish test results
       uses: EnricoMi/publish-unit-test-result-action@v2
       if: always()
       with:
-        files: './UpInfo78/UpInfo78/test/TestResults/*.trx'
+        files: './test/TestResults/*.trx'
         GITHUB_TOKEN: ${{ github.token }}
 
     - name: Update version number
       run: |
         # Get the current version number from the csproj file
-        CURRENT_VERSION=$(xmlstarlet sel -t -v "//Project/PropertyGroup/PackageVersion" ./UpInfo78/UpInfo78/UpInfo78/UpInfo78.csproj)
+        CURRENT_VERSION=$(xmlstarlet sel -t -v "//Project/PropertyGroup/PackageVersion" ./UpInfo78/UpInfo78.csproj)
         
         # Split the version number into an array
         IFS='.' read -r -a VERSION_PARTS <<< "$CURRENT_VERSION"
@@ -58,7 +60,7 @@ jobs:
         NEW_VERSION="${VERSION_PARTS[0]}.${VERSION_PARTS[1]}.${VERSION_PARTS[2]}.${PATCH_VERSION}"
         
         # Update the csproj file with the new version number
-        xmlstarlet ed -L -u "//Project/PropertyGroup/PackageVersion" -v "$NEW_VERSION" ./UpInfo78/UpInfo78/UpInfo78/UpInfo78.csproj
+        xmlstarlet ed -L -u "//Project/PropertyGroup/PackageVersion" -v "$NEW_VERSION" ./UpInfo78/UpInfo78.csproj
         
         # Output the new version number for debugging
         echo "New version number: $NEW_VERSION"
@@ -69,7 +71,7 @@ jobs:
     - name: List files in the current directory
       run: ls -la
     - name: Pack project
-      run: dotnet pack ./UpInfo78/UpInfo78/UpInfo78/UpInfo78.csproj --output ./artifacts --include-symbols --no-build --configuration Release
+      run: dotnet pack ./UpInfo78/UpInfo78.csproj --output ./artifacts --include-symbols --no-build --configuration Release
 
     - name: Publish to NuGet
       run: |
