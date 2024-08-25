@@ -6,7 +6,7 @@
 「Upinfo78」简单封装方便调用。
 
 [![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
-[![Tests](https://www778878net.github.io/Upinfo78/test-badge.svg)](https://github.com/www778878net/Upinfo78/actions)
+[![Tests](https://www778878net.github.io/UpInfo78/test-badge.svg)](https://github.com/www778878net/UpInfo78/actions)
 [![QQ群](https://img.shields.io/badge/QQ群-323397913-blue.svg?style=flat-square&color=12b7f5&logo=qq)](https://qm.qq.com/cgi-bin/qm/qr?k=it9gUUVdBEDWiTOH21NsoRHAbE9IAzAO&jump_from=webapi&authKey=KQwSXEPwpAlzAFvanFURm0Foec9G9Dak0DmThWCexhqUFbWzlGjAFC7t0jrjdKdL)
 
 </div>
