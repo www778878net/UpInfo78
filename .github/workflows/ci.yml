@@ -41,6 +41,9 @@ jobs:
         files: './test/TestResults/*.trx'
         GITHUB_TOKEN: ${{ github.token }}
 
+    - name: Print current directory
+      run: pwd
+
     - name: Pack project
       run: dotnet pack ./Upinfo78/Upinfo78.csproj --output ./artifacts --include-symbols --no-build
 
