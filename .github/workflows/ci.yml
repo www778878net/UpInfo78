@@ -14,14 +14,14 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
+      GITHUB_TOKEN: ${{ secrets.TEST_RESULTS_PAT  }}
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.x' # Updated to match the latest version installed
 
@@ -42,4 +42,4 @@ jobs:
       if: always()
       with:
         files: './test/TestResults/*.trx'
-        GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}  # 更新这里
+        GITHUB_TOKEN: ${{ env.TEST_RESULTS_PAT  }}  # 更新这里
