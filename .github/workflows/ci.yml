@@ -1,10 +1,7 @@
 name: .NET Core NUnit Tests CI
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
+  pull_request_target:
     branches:
       - main
 
@@ -13,17 +10,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    env:
-      GITHUB_TOKEN: ${{ secrets.MYKEY78 }}
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-
-    - name: Print MYKEY78 value
-      run: |
-        echo "MYKEY78 Value: $GITHUB_TOKEN"
-      # 这里使用 $GITHUB_TOKEN 来引用环境变量
 
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v4
@@ -47,4 +36,4 @@ jobs:
       if: always()
       with:
         files: './test/TestResults/*.trx'
-        GITHUB_TOKEN: ${{ secrets.MYKEY78 }}
+        GITHUB_TOKEN: ${{ github.token }}
