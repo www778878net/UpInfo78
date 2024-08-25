@@ -43,10 +43,10 @@ jobs:
         IFS='.' read -r -a VERSION_PARTS <<< "$CURRENT_VERSION"
         
         # Increment the last part of the version number
-        PATCH_VERSION=$((VERSION_PARTS[3] + 1))
+        PATCH_VERSION=$((VERSION_PARTS[2] + 1))
         
         # Construct the new version number
-        NEW_VERSION="${VERSION_PARTS[0]}.${VERSION_PARTS[1]}.${VERSION_PARTS[2]}.${PATCH_VERSION}"
+        NEW_VERSION="${VERSION_PARTS[0]}.${VERSION_PARTS[1]}.${PATCH_VERSION}"
         
         # Update the csproj file with the new version number
         xmlstarlet ed -L -u "//Project/PropertyGroup/PackageVersion" -v "$NEW_VERSION" ./UpInfo78/UpInfo78.csproj
