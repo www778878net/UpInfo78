@@ -2,7 +2,7 @@
 
 English| [简体中文](./README.cn.md) 
 
-**Upinfo78** provides a simple wrapper around NLog, making it easier to use.
+**Upinfo78**  making it easier to use.
 
 [![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![Tests](https://www778878net.github.io/Upinfo78/test-badge.svg)](https://github.com/www778878net/Upinfo78/actions)
