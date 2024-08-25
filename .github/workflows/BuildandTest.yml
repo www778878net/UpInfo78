@@ -1,9 +1,12 @@
+# .github/workflows/BuildandTest.yml
 name: Build and Test
 
 on:
   push:
     branches:
       - main
+    paths-ignore:
+      - '**/UpInfo78/UpInfo78.csproj'  # 忽略 csproj 文件的更改
   pull_request:
     branches:
       - main
@@ -16,6 +19,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0 
 
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v4
@@ -33,6 +38,7 @@ jobs:
 
 
     - name: Update version number
+      id: update-version
       run: |
         pwd
         ls -la
@@ -53,6 +59,7 @@ jobs:
         
         # Output the new version number for debugging
         echo "New version number: $NEW_VERSION"
+        echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
 
     - name: Build UpInfo78 project
       run: dotnet build ./UpInfo78/UpInfo78.csproj --configuration Release
@@ -88,6 +95,7 @@ jobs:
       with:
         commit_message: 'Update version number'
         file_pattern: './UpInfo78/UpInfo78.csproj' 
+        tagging_message: 'Release v${{ steps.update-version.outputs.new_version }}'  # **新增**: 在提交时创建标签
 
     - name: Set Git User Information
       run: |
