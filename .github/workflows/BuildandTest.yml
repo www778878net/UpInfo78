@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths-ignore:
-      - '**/UpInfo78/UpInfo78.csproj'  # 忽略 csproj 文件的更改    
+      - '**/UpInfo78/UpInfo78.csproj'  
   pull_request:
     branches:
       - main

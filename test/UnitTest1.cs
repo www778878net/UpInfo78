@@ -33,8 +33,7 @@ namespace Tests
                 bcid = "cidvps",
                 sid = "session123",
                 cache = "cache123",
-                mid = "custom_mid",
-              
+                mid = "custom_mid",              
                 order = "name",
                 desc = 1,
                 getnumber = 50,
