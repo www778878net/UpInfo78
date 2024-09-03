@@ -89,10 +89,7 @@ git push origin main:main
 REM Merge changes to develop
 git checkout develop
 git merge main
-git push origin develop
 
-REM Switch back to main
-git checkout main
 
 echo Release process completed. New version !new_version! has been tagged and pushed to main and develop branches.
 
