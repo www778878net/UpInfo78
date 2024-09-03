@@ -60,13 +60,20 @@ powershell -Command "(Get-Content '!project_file!') -replace '<PackageVersion>!c
 
 echo Version updated for !project_name! (!project_file!)
 
-REM Create Git tag
-git tag v!new_version!
+REM Stage the changed project file
+git add "!project_file!"
 
-REM Push changes and tags
-git push
-git push --tags
+REM Create an annotated tag with the changes
+git tag -a v!new_version! -m "Bump version to !new_version!"
 
-echo Release process completed. New version !new_version! has been tagged and pushed.
+REM Push the tag and changes to main
+git push origin main
+git push origin v!new_version!
+
+REM Switch to develop branch and merge changes from main
+git checkout develop
+git merge main
+
+echo Release process completed. New version !new_version! has been tagged and pushed to main. Changes merged to develop branch.
 
 endlocal
