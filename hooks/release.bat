@@ -8,7 +8,7 @@ cd /d "%~dp0\..\"
 
 REM Check if we are on the main branch
 git rev-parse --abbrev-ref HEAD > temp.txt
-set /p current_branch=<temp.txt
+set /p current_branch=<temp.txt>
 del temp.txt
 
 if not "!current_branch!"=="main" (
@@ -74,9 +74,6 @@ echo Version updated for !project_name! (!project_file!)
 
 REM Stage the changed project file
 git add "!project_file!"
-
-REM Commit the changes
-git commit -m "Bump version to !new_version!"
 
 REM Create an annotated tag with the changes
 git tag -a v!new_version! -m "Bump version to !new_version!"
