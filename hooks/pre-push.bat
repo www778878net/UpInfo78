@@ -21,7 +21,7 @@ if "!current_branch!" == "develop" (
     REM Merge develop branch, using --squash option to compress all commits into one
     git merge --squash develop
 
-    REM Commit with the last commit message
+    REM Commit with the last commit  message
     git commit -m "!last_commit_msg!"
 
     REM Uncomment the following line if you want to automatically push to main
