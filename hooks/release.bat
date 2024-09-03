@@ -79,7 +79,7 @@ powershell -Command "(Get-Content '!project_file!') -replace '<PackageVersion>!c
 echo Version updated for !project_name! (!project_file!)
 
 REM Stage the changed project file
-git add "%project_file%"
+git add .
 
 REM Create an annotated tag with the changes
 git tag -a v%new_version% -m "Bump version to %new_version%"
