@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UpInfo78\UpInfo78.csproj" />
+    <ProjectReference Include="..\..\src\UpInfo78\UpInfo78.csproj" />
   </ItemGroup>
 
 </Project>
