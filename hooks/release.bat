@@ -39,12 +39,6 @@ REM Update main branch
 git checkout main
 git pull origin main
 
-REM Update develop branch
-git checkout develop
-git pull origin develop
-
-REM Switch back to main branch
-git checkout main
 
 REM Get current version
 for /f "tokens=3 delims=<>" %%a in ('findstr "<PackageVersion>" "!project_file!"') do set "current_version=%%a"
