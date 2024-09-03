@@ -90,7 +90,20 @@ REM Merge changes to develop
 git checkout develop
 git merge main
 
+REM Stage the changed project file
+git add "!project_file!"
 
-echo Release process completed. New version !new_version! has been tagged and pushed to main and develop branches.
+REM Create an annotated tag with the changes
+git tag -a v!new_version! -m "Bump version to !new_version!"
+
+REM Push the tag and changes to main
+git push origin main
+git push origin v!new_version!
+
+REM Switch to develop branch and merge changes from main
+git checkout develop
+git merge main
+
+echo Release process completed. New version !new_version! has been tagged and pushed to main. Changes merged to develop branch.
 
 endlocal
