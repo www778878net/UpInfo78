@@ -4,9 +4,7 @@ name: Build and Test
 on:
   push:
     branches:
-      - main
-    paths-ignore:
-      - '**/UpInfo78/UpInfo78.csproj'  
+      - main   
   pull_request:
     branches:
       - main
