@@ -69,6 +69,9 @@ git tag -a v!new_version! -m "Bump version to !new_version!"
 REM Push the tag (which includes the changes)
 git push origin v!new_version!
 
+REM Push the changes to the current branch without creating a new commit
+git push
+
 echo Release process completed. New version !new_version! has been tagged and pushed.
 
 endlocal
