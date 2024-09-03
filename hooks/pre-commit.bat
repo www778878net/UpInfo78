@@ -35,7 +35,7 @@ if "!current_branch!" == "develop" (
 
     echo Build succeeded
 
-    REM Add generated files to Git staging area
+    REM Add generated files to  Git staging area
     echo Adding generated files to Git staging area...
     git add .
     echo Files added to staging area
