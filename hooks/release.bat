@@ -81,7 +81,7 @@ echo Version updated for !project_name! (!project_file!)
 REM Stage the changed project file
 git add "!project_file!"
 
-REM Create a lightweight tag with the changes
+REM Create a lightweight  tag with the changes
 git tag v!new_version!
 
 REM Push the changes and tag to main
