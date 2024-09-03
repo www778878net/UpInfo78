@@ -6,6 +6,18 @@ echo Starting release process...
 REM Change to the project root directory (one level up from the hooks directory)
 cd /d "%~dp0\..\"
 
+REM Check if we are on the main branch
+git rev-parse --abbrev-ref HEAD > temp.txt
+set /p current_branch=<temp.txt>
+del temp.txt
+
+if not "!current_branch!"=="main" (
+    echo This script should only be run on the main branch.
+    echo Current branch: !current_branch!
+    echo Exiting...
+    goto :eof
+)
+
 REM Get the current directory name as the project name
 for %%I in (.) do set "project_name=%%~nxI"
 echo Processing project: !project_name!
@@ -83,27 +95,10 @@ git tag -a v!new_version! -m "Bump version to !new_version!"
 REM Push the tag to main (this includes the changes)
 git push origin v!new_version!
 
-REM Update main branch with the changes
-git push origin main:main
-
-REM Merge changes to develop
-git checkout develop
-git merge main
-
-REM Stage the changed project file
-git add "!project_file!"
-
-REM Create an annotated tag with the changes
-git tag -a v!new_version! -m "Bump version to !new_version!"
-
-REM Push the tag and changes to main
-git push origin main
-git push origin v!new_version!
-
 REM Switch to develop branch and merge changes from main
 git checkout develop
 git merge main
 
-echo Release process completed. New version !new_version! has been tagged and pushed to main. Changes merged to develop branch.
+echo Release process completed. New version !new_version! has been committed, tagged and pushed to main. Changes merged to develop branch (not pushed).
 
 endlocal
