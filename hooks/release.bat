@@ -78,7 +78,7 @@ powershell -Command "(Get-Content '!project_file!') -replace '<PackageVersion>!c
 
 echo Version updated for !project_name! (!project_file!)
 
-REM Stage the changed project file
+REM Stage the changed  project file
 git add "!project_file!"
 
 REM Commit the version change
