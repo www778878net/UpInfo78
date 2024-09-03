@@ -78,14 +78,14 @@ powershell -Command "(Get-Content '!project_file!') -replace '<PackageVersion>!c
 
 echo Version updated for !project_name! (!project_file!)
 
-REM Stage the changed project file
+REM Stage the changed  project file
 git add "!project_file!"
 
 REM Commit the version change
-git commit -m "Bump version to !new_version!"
+git commit -m "v!new_version!"
 
 REM Create an annotated tag with the changes
-git tag -a v!new_version! -m "Bump version to !new_version!"
+git tag -a v!new_version! -m "v!new_version!"
 
 REM Push the changes and tag to main
 git push origin main
