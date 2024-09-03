@@ -22,6 +22,20 @@ if not exist "!project_file!" (
 
 echo Found project file: !project_file!
 
+REM Fetch the latest changes from remote
+git fetch origin
+
+REM Update main branch
+git checkout main
+git pull origin main
+
+REM Update develop branch
+git checkout develop
+git pull origin develop
+
+REM Switch back to main branch
+git checkout main
+
 REM Get current version
 for /f "tokens=3 delims=<>" %%a in ('findstr "<PackageVersion>" "!project_file!"') do set "current_version=%%a"
 if not defined current_version (
@@ -66,12 +80,20 @@ git add "!project_file!"
 REM Create an annotated tag with the changes
 git tag -a v!new_version! -m "Bump version to !new_version!"
 
-REM Push the tag (which includes the changes)
+REM Push the tag to main (this includes the changes)
 git push origin v!new_version!
 
-REM Push the changes to the current branch without creating a new commit
-git push
+REM Update main branch with the changes
+git push origin main:main
 
-echo Release process completed. New version !new_version! has been tagged and pushed.
+REM Merge changes to develop
+git checkout develop
+git merge main
+git push origin develop
+
+REM Switch back to main
+git checkout main
+
+echo Release process completed. New version !new_version! has been tagged and pushed to main and develop branches.
 
 endlocal
