@@ -7,32 +7,38 @@ REM Change to the project root directory (one level up from the hooks directory)
 cd /d "%~dp0\..\"
 
 REM Check if we are on the main branch
-git rev-parse --abbrev-ref HEAD > temp.txt
-set /p current_branch=<temp.txt>
-del temp.txt
+for /f "tokens=*" %%i in ('git rev-parse --abbrev-ref HEAD') do set current_branch=%%i
 
-if not "!current_branch!"=="main" (
+if not "%current_branch%"=="main" (
     echo This script should only be run on the main branch.
-    echo Current branch: !current_branch!
+    echo Current branch: %current_branch%
     echo Exiting...
     goto :eof
 )
 
 REM Get the current directory name as the project name
 for %%I in (.) do set "project_name=%%~nxI"
-echo Processing project: !project_name!
+echo Processing project: %project_name%
 
 REM Set the project file path
-set "project_file=src\!project_name!\!project_name!.csproj"
+set "project_file=src\%project_name%\%project_name%.csproj"
 
 REM Check if the project file exists
-if not exist "!project_file!" (
-    echo Project file not found: !project_file!
+if not exist "%project_file%" (
+    echo Project file not found: %project_file%
     echo Exiting...
     goto :eof
 )
 
-echo Found project file: !project_file!
+echo Found project file: %project_file%
+
+REM Fetch the latest changes from remote
+git fetch origin
+
+REM Update main branch
+git checkout main
+git pull origin main
+
 
 REM Get current version
 for /f "tokens=3 delims=<>" %%a in ('findstr "<PackageVersion>" "!project_file!"') do set "current_version=%%a"
@@ -75,16 +81,20 @@ echo Version updated for !project_name! (!project_file!)
 REM Stage the changed project file
 git add "!project_file!"
 
+REM Commit the version change
+git commit -m "Bump version to !new_version!"
+
 REM Create an annotated tag with the changes
 git tag -a v!new_version! -m "Bump version to !new_version!"
 
-REM Push the tag to main (this includes the changes)
+REM Push the changes and tag to main
+git push origin main
 git push origin v!new_version!
 
 REM Switch to develop branch and merge changes from main
 git checkout develop
 git merge main
 
-echo Release process completed. New version !new_version! has been committed, tagged and pushed to main. Changes merged to develop branch (not pushed).
+echo Release process completed. New version %new_version% has been tagged and pushed to main. Changes merged to develop branch (not pushed).
 
 endlocal
