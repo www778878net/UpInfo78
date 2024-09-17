@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net48;net6.0</TargetFrameworks>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-    <AssemblyName>UpInfo78</AssemblyName>
+    <AssemblyName>$(MSBuildProjectName)</AssemblyName>
     <Deterministic>false</Deterministic>
     <PackageVersion>1.0.2</PackageVersion>
-    <PackageId>UpInfo78</PackageId>
+    <PackageId>$(MSBuildProjectName)</PackageId>
     <Authors>Frieda.657225485@qq.com</Authors>
     <Company>www778878net</Company>
-    <Product>UpInfo78</Product>
+    <Product>$(MSBuildProjectName)</Product>
     <Copyright>7788soft</Copyright>
     <PackageProjectUrl>http://www.778878.net</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/www778878net/UpInfo78.git</RepositoryUrl>
-    <PackageTags>"UpInfo78";"www778878net";</PackageTags>
+    <RepositoryUrl>https://github.com/www778878net/$(MSBuildProjectName).git</RepositoryUrl>
+    <PackageTags>"$(MSBuildProjectName)";"www778878net";</PackageTags>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <RootNamespace>www778878net</RootNamespace>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
@@ -23,6 +23,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-     <None Include="../../README.md" Pack="true" PackagePath="\"/>
+    <None Include="../../README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 </Project>
