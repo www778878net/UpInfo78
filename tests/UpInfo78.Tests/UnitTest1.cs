@@ -35,7 +35,7 @@ namespace Tests
                 cache = "cache123",
                 mid = "custom_mid",              
                 order = "name",
-                desc = 1,
+             
                 getnumber = 50,
                 getstart = 10,
                 Midpk = 12345,

@@ -59,11 +59,7 @@ namespace www778878net.net
         /// 电脑名 
         /// </summary>
         public static string pcid { get; set; } = "";
-        /// <summary>
-        /// 是否倒序
-        /// </summary>
-
-        public int desc { get; set; }
+        
         /// <summary>
         /// 平台默认ali
         /// </summary>
@@ -81,7 +77,7 @@ namespace www778878net.net
             getnumber = 1000;
             getstart = 0;
             order = "idpk";
-            desc = 0;
+           
             cache = "";
             cols = new string[] { "all" };
             v = 24;
@@ -131,10 +127,8 @@ namespace www778878net.net
 
 
             if (pcid != "") sb.Append("&pcid=" + pcid);
-            string orderdesc = order;
-            if (desc == 1)
-                orderdesc = order + " desc";
-            if (orderdesc != "idpk") sb.Append("&order=" + Uri.EscapeDataString(orderdesc));
+            string orderdesc = order; 
+            if (orderdesc != "idpk desc") sb.Append("&order=" + Uri.EscapeDataString(orderdesc));
             if (getnumber != 1000)
                 sb.Append("&getnumber=" + getnumber.ToString());
             if (getstart != 0)
