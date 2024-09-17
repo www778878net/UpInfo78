@@ -202,7 +202,39 @@ namespace www778878net.net
             AddPar(sInfo);
         }
 
+        private static UpInfo78 _masterInstance = GetGuest();
 
+        public static void SetMaster(UpInfo78 up)
+        {
+            _masterInstance = up;
+        }
+
+        public static UpInfo78 GetMaster()
+        {
+            return _masterInstance;
+        }
+
+        public static UpInfo78 GetGuest()
+        {
+            var up2 = new UpInfo78();
+            up2.sid = "GUEST888-8888-8888-8888-GUEST88GUEST";
+            up2.cid = "GUEST000-8888-8888-8888-GUEST00GUEST";
+            up2.bcid = "d4856531-e9d3-20f3-4c22-fe3c65fb009c";
+            up2.mid = GetNewid(); // 注意：需要实现GetNewid方法
+            up2.uname = "guest";
+            up2.pars = new string[0];
+            up2.getstart = 0;
+            // 注意：C#版本中没有ip属性，如果需要可以添加
+
+            return up2;
+        }
+
+        // 需要实现GetNewid方法
+        private static string GetNewid()
+        {
+            // 实现生成新ID的逻辑
+            return Guid.NewGuid().ToString();
+        }
 
     }
 }
