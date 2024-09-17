@@ -211,6 +211,7 @@ namespace www778878net.net
 
         public static UpInfo78 GetMaster()
         {
+            _masterInstance.pars = new string[0];
             return _masterInstance;
         }
 
@@ -234,6 +235,11 @@ namespace www778878net.net
         {
             // 实现生成新ID的逻辑
             return Guid.NewGuid().ToString();
+        }
+
+        public void ClearPars()
+        {
+            pars = new string[0];
         }
 
     }
