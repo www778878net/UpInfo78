@@ -18,7 +18,7 @@ namespace Tests
             var urlEncoded = upInfo.ToUrlEncode();
 
             // Assert
-            Assert.AreEqual("sid=", urlEncoded);
+            Assert.AreEqual("sid=&order=idpk", urlEncoded);
         }
 
         [Test]
