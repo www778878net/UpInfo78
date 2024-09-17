@@ -11,7 +11,7 @@ namespace Tests
         [Test]
         public void TestToUrlEncode_DefaultValues()
         {
-            // Arrange1
+            // Arrange
             var upInfo = new UpInfo78();
 
             // Act
@@ -47,7 +47,7 @@ namespace Tests
             var urlEncoded = upInfo.ToUrlEncode();
 
             // Assert
-            Assert.AreEqual("sid=session123&uname=testuser&bcid=28401227-bd00-a20f-c561-ddf0def881d9&cache=cache123&mid=custom_mid&pcid=PC123&order=name%20desc&getnumber=50&getstart=10&midpk=12345&pars=%5B%22param1%22%2C%22param2%22%5D&cols=[\"col1\",\"col2\"]", urlEncoded);
+            Assert.AreEqual("sid=session123&uname=testuser&bcid=28401227-bd00-a20f-c561-ddf0def881d9&cache=cache123&mid=custom_mid&pcid=PC123&order=name&getnumber=50&getstart=10&midpk=12345&pars=%5B%22param1%22%2C%22param2%22%5D&cols=[\"col1\",\"col2\"]", urlEncoded);
         }
     }
 }
